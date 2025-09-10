@@ -1,106 +1,306 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mohamed Wael Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      AOS.init({ duration: 1000 });
-    });
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEEE Courses - تسجيل الدخول</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define a modern, readable Arabic font */
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap');
+
+        /* The body acts as a full-screen canvas with a sophisticated background and subtle animation */
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #0d0d1a;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #d1d5db;
+        }
+
+        /* Subtle animated background points */
+        .background-points::before, .background-points::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.2;
+            filter: blur(80px);
+            animation: pulse 8s infinite;
+        }
+
+        .background-points::before {
+            top: 10%;
+            left: 10%;
+            width: 300px;
+            height: 300px;
+            background: #8b5cf6; /* purple */
+        }
+
+        .background-points::after {
+            bottom: 15%;
+            right: 15%;
+            width: 350px;
+            height: 350px;
+            background: #10b981; /* green */
+            animation-delay: 2s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Animation for the card entry */
+        @keyframes fadeInScaleUp {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .login-card, .register-card {
+            background: rgba(255, 255, 255, 0.08); /* Semi-transparent background */
+            backdrop-filter: blur(10px); /* Glassmorphism effect */
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            width: 90%;
+            max-width: 480px;
+            padding: 3rem;
+            text-align: center;
+            animation: fadeInScaleUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            position: relative;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid transparent;
+            transition: all 0.3s ease-in-out;
+            text-align: right;
+            color: #e5e7eb;
+        }
+
+        .login-input::placeholder {
+            color: #9ca3af;
+        }
+
+        .login-input:focus {
+            outline: none;
+            border-color: #a78bfa;
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .login-button {
+            background: linear-gradient(135deg, #a78bfa, #6d28d9);
+            color: #ffffff;
+            font-weight: bold;
+            padding: 0.85rem 2rem;
+            border-radius: 0.75rem;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.4s ease-in-out;
+            box-shadow: 0 8px 15px -3px rgba(109, 40, 217, 0.4);
+        }
+        .login-button:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 20px -5px rgba(109, 40, 217, 0.5);
+            background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+        }
+
+        .hidden-dashboard {
+            display: none;
+            padding: 2.5rem;
+            background: rgba(45, 49, 62, 0.8);
+            border-radius: 1.5rem;
+            text-align: center;
+            max-width: 600px;
+            margin-top: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            animation: fadeInScaleUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        .message-box {
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        .message-success {
+            color: #10b981;
+        }
+        .message-error {
+            color: #ef4444;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Modal styling - no longer used, but kept for reference
+        .modal { display: none; }
+        .modal-content { display: none; }
+        .modal-close { display: none; }
+        */
+    </style>
 </head>
-<body class="bg-gradient-to-br from-gray-900 to-black text-white font-sans">
-  <!-- Hero Section -->
-  <section class="h-screen flex flex-col justify-center items-center text-center px-4" data-aos="zoom-in">
-    <h1 class="text-5xl md:text-7xl font-extrabold mb-4">Mohamed Wael</h1>
-    <p class="text-xl md:text-2xl text-gray-300 mb-6">Telecom Student | Fiber & 5G | Python & Flutter Dev</p>
-    <a href="#projects" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-full text-white font-bold transition">Explore My Portfolio</a>
-  </section>
+<body>
+    <div class="background-points"></div>
+    <div id="login-register-container">
+        <!-- Login Card -->
+        <div id="login-form" class="login-card">
+            <h1 class="text-5xl font-extrabold mb-4 text-white">
+                <span class="text-7xl text-purple-400">I</span>EEE Courses
+            </h1>
+            <p class="text-gray-400 mb-8">
+                يرجى تسجيل الدخول للوصول إلى محتوى الكورسات الحصري.
+            </p>
+            
+            <input type="email" id="email" class="login-input" placeholder="البريد الإلكتروني" required>
+            <input type="password" id="password" class="login-input" placeholder="كلمة المرور" required>
+            <button id="login-btn" class="login-button">
+                تسجيل الدخول
+            </button>
+            
+            <p class="text-center text-sm mt-4 text-gray-400">
+                ليس لديك حساب؟ <a href="#" id="show-register" class="text-purple-400 hover:text-purple-300">سجل الآن</a>
+            </p>
+            <div id="message-box" class="mt-4 text-sm message-box"></div>
+        </div>
 
-  <!-- Summary Section -->
-  <section class="py-20 px-6 bg-gray-950" data-aos="fade-up">
-    <h2 class="text-4xl font-bold text-center mb-8">🧠 Summary</h2>
-    <div class="max-w-4xl mx-auto text-center text-gray-300">
-      <p>
-        Highly motivated Telecommunications student with a strong foundation in Fiber Optics, 5G, VoIP, and programming (Python/Flutter). Skilled in fiber splicing, IoT prototyping (ESP32), and network teaching. National finalist in problem solving and experienced as a speaker and instructor. Seeking impactful roles in Telecom or IT.
-      </p>
+        <!-- Register Card -->
+        <div id="register-form" class="register-card hidden">
+            <h1 class="text-5xl font-extrabold mb-4 text-white">
+                <span class="text-7xl text-purple-400">I</span>EEE Courses
+            </h1>
+            <p class="text-gray-400 mb-8">
+                إنشاء حساب جديد للوصول إلى الكورسات.
+            </p>
+
+            <input type="text" id="register-first-name" class="login-input" placeholder="الاسم الأول" required>
+            <input type="text" id="register-last-name" class="login-input" placeholder="الاسم الأخير" required>
+            <input type="email" id="register-email" class="login-input" placeholder="البريد الإلكتروني" required>
+            <input type="text" id="register-national-id" class="login-input" placeholder="الرقم القومي" required>
+            <input type="tel" id="register-phone" class="login-input" placeholder="رقم التليفون" required>
+            <input type="password" id="register-password" class="login-input" placeholder="كلمة المرور" required>
+            
+            <button id="register-btn" class="login-button">
+                إنشاء حساب
+            </button>
+            <p class="text-center text-sm mt-4 text-gray-400">
+                لديك حساب بالفعل؟ <a href="#" id="show-login" class="text-purple-400 hover:text-purple-300">سجل الدخول</a>
+            </p>
+            <div id="register-message-box" class="mt-4 text-sm message-box"></div>
+        </div>
     </div>
-  </section>
 
-  <!-- Experience Section -->
-  <section class="py-20 px-6" data-aos="fade-right">
-    <h2 class="text-4xl font-bold text-center mb-12">💼 Experience</h2>
-    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
-      <div class="bg-gray-800 p-6 rounded-xl shadow-md" data-aos="zoom-in">
-        <h3 class="text-2xl font-semibold mb-2">FTTx Intern</h3>
-        <p class="text-gray-400 mb-2">Telecom Egypt | Alexandria, 2025</p>
-        <ul class="list-disc text-gray-400 ml-5">
-          <li>Installed fiber networks, spliced cables, and performed OTDR testing.</li>
-          <li>Assisted in troubleshooting and maintenance.</li>
-        </ul>
-      </div>
-      <div class="bg-gray-800 p-6 rounded-xl shadow-md" data-aos="zoom-in" data-aos-delay="100">
-        <h3 class="text-2xl font-semibold mb-2">IT & Network Instructor</h3>
-        <p class="text-gray-400 mb-2">Skillova Academy | Remote, 2024–2025</p>
-        <ul class="list-disc text-gray-400 ml-5">
-          <li>Taught networking, Python, and IT to high school & college students.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+    <!-- The modal is no longer used, so it's commented out -->
+    <!-- Modal -->
+    <!-- <div id="modal" class="modal">
+        <div class="modal-content">
+            <p>المحتوى سيتوفر قريباً!</p>
+            <button id="modal-close" class="modal-close">حسناً</button>
+        </div>
+    </div> -->
 
-  <!-- Projects Section -->
-  <section id="projects" class="py-20 px-6 bg-gray-900" data-aos="fade-left">
-    <h2 class="text-4xl font-bold text-center mb-12">🚀 Projects</h2>
-    <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
-      <div class="bg-gray-800 p-6 rounded-xl shadow-lg" data-aos="zoom-in">
-        <h3 class="text-2xl font-semibold mb-2">IoT Smart Device (ESP32)</h3>
-        <p class="text-gray-400">Prototyped a smart device using ESP32 for real-time monitoring & control.</p>
-      </div>
-      <div class="bg-gray-800 p-6 rounded-xl shadow-lg" data-aos="zoom-in" data-aos-delay="150">
-        <h3 class="text-2xl font-semibold mb-2">Mobile Apps (Flutter)</h3>
-        <p class="text-gray-400">Built cross-platform apps using Dart and Flutter with modern UI/UX and API integration.</p>
-      </div>
-    </div>
-  </section>
+    <script>
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const loginBtn = document.getElementById('login-btn');
+        const messageBox = document.getElementById('message-box');
+        const registerFirstNameInput = document.getElementById('register-first-name');
+        const registerLastNameInput = document.getElementById('register-last-name');
+        const registerEmailInput = document.getElementById('register-email');
+        const registerNationalIdInput = document.getElementById('register-national-id');
+        const registerPhoneInput = document.getElementById('register-phone');
+        const registerPasswordInput = document.getElementById('register-password');
+        const registerBtn = document.getElementById('register-btn');
+        const registerMessageBox = document.getElementById('register-message-box');
+        const showRegisterLink = document.getElementById('show-register');
+        const showLoginLink = document.getElementById('show-login');
+        
+        // زر "سجل الآن"
+        showRegisterLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginForm.classList.add('hidden');
+            registerForm.classList.remove('hidden');
+            clearRegisterInputs();
+        });
 
-  <!-- Skills Section -->
-  <section class="py-20 px-6" data-aos="fade-up">
-    <h2 class="text-4xl font-bold text-center mb-12">🛠️ Technical Skills</h2>
-    <div class="flex flex-wrap justify-center gap-4 text-gray-200 text-center">
-      <span class="bg-gray-700 px-5 py-2 rounded-full">FTTx & 5G</span>
-      <span class="bg-gray-700 px-5 py-2 rounded-full">VoIP / SIP</span>
-      <span class="bg-gray-700 px-5 py-2 rounded-full">Python</span>
-      <span class="bg-gray-700 px-5 py-2 rounded-full">Flutter</span>
-      <span class="bg-gray-700 px-5 py-2 rounded-full">ESP32 (IoT)</span>
-      <span class="bg-gray-700 px-5 py-2 rounded-full">Windows Server</span>
-      <span class="bg-gray-700 px-5 py-2 rounded-full">AutoCAD</span>
-      <span class="bg-gray-700 px-5 py-2 rounded-full">Packet Tracer</span>
-    </div>
-  </section>
+        // زر "سجل الدخول" داخل الريجستر
+        showLoginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerForm.classList.add('hidden');
+            loginForm.classList.remove('hidden');
+            clearLoginInputs();
+        });
 
-  <!-- Achievements Section -->
-  <section class="py-20 px-6 bg-gray-950" data-aos="fade-up">
-    <h2 class="text-4xl font-bold text-center mb-12">🏆 Achievements</h2>
-    <div class="max-w-4xl mx-auto text-gray-300 text-center">
-      <ul class="list-disc list-inside">
-        <li>Finalist – ISF National Problem Solving Championship (Egypt)</li>
-        <li>Speaker at EduTech Event – WE School of Applied Technology</li>
-        <li>Top student in Telecommunications major</li>
-      </ul>
-    </div>
-  </section>
+        // زر تسجيل الدخول الرئيسي
+        loginBtn.addEventListener('click', () => {
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            if (!email || !password) {
+                showMessage('يرجى إدخال البريد الإلكتروني وكلمة المرور.', messageBox, 'error');
+                return;
+            }
+            // فتح رابط يوتيوب مباشرة بعد التحقق
+            window.open('https://stopify.co/89S72N', '_blank');
+        });
 
-  <!-- Footer -->
-  <footer class="text-center py-10 bg-black text-gray-400">
-    <p>📞 +20 106 074 1701 | ✉️ mohamedwaelm554@gmail.com</p>
-    <p class="mt-2">
-      Connect on <a href="https://linkedin.com/in/mohamed-wael-52b9392ba" target="_blank" class="text-blue-400 hover:underline">LinkedIn</a>
-    </p>
-  </footer>
+        // زر تسجيل حساب جديد
+        registerBtn.addEventListener('click', () => {
+            const email = registerEmailInput.value;
+            const nationalId = registerNationalIdInput.value;
+
+            if (!/^\d{14}$/.test(nationalId)) {
+                showMessage('الرقم القومي غير صحيح. يجب أن يتكون من 14 رقمًا.', registerMessageBox, 'error');
+                return;
+            }
+
+            if (!registerFirstNameInput.value || !registerLastNameInput.value || !email || !registerPhoneInput.value || !registerPasswordInput.value) {
+                showMessage('يرجى ملء جميع الحقول.', registerMessageBox, 'error');
+                return;
+            }
+
+            // فتح رابط يوتيوب مباشرة بعد التحقق
+            window.open('https://stopify.co/SL6BB2', '_blank');
+        });
+
+        // وظائف مساعدة
+        function showMessage(text, element, type) {
+            element.textContent = text;
+            element.classList.add(`message-${type}`);
+            setTimeout(() => {
+                element.classList.remove(`message-${type}`);
+                element.textContent = '';
+            }, 3000);
+        }
+
+        function clearLoginInputs() { emailInput.value = ''; passwordInput.value = ''; messageBox.textContent = ''; }
+        function clearRegisterInputs() {
+            registerFirstNameInput.value = '';
+            registerLastNameInput.value = '';
+            registerEmailInput.value = '';
+            registerNationalIdInput.value = '';
+            registerPhoneInput.value = '';
+            registerPasswordInput.value = '';
+            registerMessageBox.textContent = '';
+        }
+    </script>
 </body>
 </html>
