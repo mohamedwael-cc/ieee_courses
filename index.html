@@ -4,13 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IEEE Courses - تسجيل الدخول</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Define a modern, readable Arabic font */
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap');
-
-        /* The body acts as a full-screen canvas with a sophisticated background and subtle animation */
         body {
             font-family: 'Cairo', sans-serif;
             background: #0d0d1a;
@@ -22,8 +18,6 @@
             min-height: 100vh;
             color: #d1d5db;
         }
-
-        /* Subtle animated background points */
         .background-points::before, .background-points::after {
             content: '';
             position: absolute;
@@ -32,107 +26,71 @@
             filter: blur(80px);
             animation: pulse 8s infinite;
         }
-
         .background-points::before {
             top: 10%;
             left: 10%;
             width: 300px;
             height: 300px;
-            background: #8b5cf6; /* purple */
+            background: #8b5cf6;
         }
-
         .background-points::after {
             bottom: 15%;
             right: 15%;
             width: 350px;
             height: 350px;
-            background: #10b981; /* green */
+            background: #10b981;
             animation-delay: 2s;
         }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        /* Animation for the card entry */
-        @keyframes fadeInScaleUp {
-            from {
-                transform: scale(0.9);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-        
+        @keyframes pulse {0%,100%{transform:scale(1);}50%{transform:scale(1.2);}}
+        @keyframes fadeInScaleUp {from{transform:scale(0.9);opacity:0;}to{transform:scale(1);opacity:1;}}
         .login-card, .register-card {
-            background: rgba(255, 255, 255, 0.08); /* Semi-transparent background */
-            backdrop-filter: blur(10px); /* Glassmorphism effect */
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border-radius: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
             width: 90%;
             max-width: 480px;
             padding: 3rem;
             text-align: center;
-            animation: fadeInScaleUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation: fadeInScaleUp 0.8s cubic-bezier(0.2,0.8,0.2,1) forwards;
             position: relative;
         }
-
         .login-input {
             width: 100%;
             padding: 0.75rem 1rem;
             margin-top: 0.5rem;
             margin-bottom: 1rem;
             border-radius: 0.75rem;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255,255,255,0.1);
             border: 1px solid transparent;
             transition: all 0.3s ease-in-out;
             text-align: right;
             color: #e5e7eb;
         }
-
-        .login-input::placeholder {
-            color: #9ca3af;
-        }
-
+        .login-input::placeholder { color: #9ca3af; }
         .login-input:focus {
             outline: none;
             border-color: #a78bfa;
-            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.3);
-            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 0 3px rgba(167,139,250,0.3);
+            background: rgba(255,255,255,0.2);
         }
-        
         .login-button {
-            background: linear-gradient(135deg, #a78bfa, #6d28d9);
-            color: #ffffff;
+            background: linear-gradient(135deg,#a78bfa,#6d28d9);
+            color: #fff;
             font-weight: bold;
             padding: 0.85rem 2rem;
             border-radius: 0.75rem;
             width: 100%;
             cursor: pointer;
             transition: all 0.4s ease-in-out;
-            box-shadow: 0 8px 15px -3px rgba(109, 40, 217, 0.4);
+            box-shadow: 0 8px 15px -3px rgba(109,40,217,0.4);
         }
         .login-button:hover {
             transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 12px 20px -5px rgba(109, 40, 217, 0.5);
-            background: linear-gradient(135deg, #a78bfa, #8b5cf6);
-        }
-
-        .hidden-dashboard {
-            display: none;
-            padding: 2.5rem;
-            background: rgba(45, 49, 62, 0.8);
-            border-radius: 1.5rem;
-            text-align: center;
-            max-width: 600px;
-            margin-top: 2rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            animation: fadeInScaleUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            box-shadow: 0 12px 20px -5px rgba(109,40,217,0.5);
+            background: linear-gradient(135deg,#a78bfa,#8b5cf6);
         }
         .message-box {
             font-weight: bold;
@@ -140,21 +98,10 @@
             opacity: 0;
             animation: fadeIn 0.5s ease-in-out forwards;
         }
-        .message-success {
-            color: #10b981;
-        }
-        .message-error {
-            color: #ef4444;
-        }
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        /* Modal styling - no longer used, but kept for reference
-        .modal { display: none; }
-        .modal-content { display: none; }
-        .modal-close { display: none; }
-        */
+        .message-success { color: #10b981; }
+        .message-error { color: #ef4444; }
+        @keyframes fadeIn { to { opacity: 1; } }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
@@ -168,13 +115,9 @@
             <p class="text-gray-400 mb-8">
                 يرجى تسجيل الدخول للوصول إلى محتوى الكورسات الحصري.
             </p>
-            
             <input type="email" id="email" class="login-input" placeholder="البريد الإلكتروني" required>
             <input type="password" id="password" class="login-input" placeholder="كلمة المرور" required>
-            <button id="login-btn" class="login-button">
-                تسجيل الدخول
-            </button>
-            
+            <button id="login-btn" class="login-button">تسجيل الدخول</button>
             <p class="text-center text-sm mt-4 text-gray-400">
                 ليس لديك حساب؟ <a href="#" id="show-register" class="text-purple-400 hover:text-purple-300">سجل الآن</a>
             </p>
@@ -189,32 +132,19 @@
             <p class="text-gray-400 mb-8">
                 إنشاء حساب جديد للوصول إلى الكورسات.
             </p>
-
             <input type="text" id="register-first-name" class="login-input" placeholder="الاسم الأول" required>
             <input type="text" id="register-last-name" class="login-input" placeholder="الاسم الأخير" required>
             <input type="email" id="register-email" class="login-input" placeholder="البريد الإلكتروني" required>
             <input type="text" id="register-national-id" class="login-input" placeholder="الرقم القومي" required>
             <input type="tel" id="register-phone" class="login-input" placeholder="رقم التليفون" required>
             <input type="password" id="register-password" class="login-input" placeholder="كلمة المرور" required>
-            
-            <button id="register-btn" class="login-button">
-                إنشاء حساب
-            </button>
+            <button id="register-btn" class="login-button">إنشاء حساب</button>
             <p class="text-center text-sm mt-4 text-gray-400">
                 لديك حساب بالفعل؟ <a href="#" id="show-login" class="text-purple-400 hover:text-purple-300">سجل الدخول</a>
             </p>
             <div id="register-message-box" class="mt-4 text-sm message-box"></div>
         </div>
     </div>
-
-    <!-- The modal is no longer used, so it's commented out -->
-    <!-- Modal -->
-    <!-- <div id="modal" class="modal">
-        <div class="modal-content">
-            <p>المحتوى سيتوفر قريباً!</p>
-            <button id="modal-close" class="modal-close">حسناً</button>
-        </div>
-    </div> -->
 
     <script>
         const loginForm = document.getElementById('login-form');
@@ -233,8 +163,10 @@
         const registerMessageBox = document.getElementById('register-message-box');
         const showRegisterLink = document.getElementById('show-register');
         const showLoginLink = document.getElementById('show-login');
-        
-        // زر "سجل الآن"
+
+        // ضع هنا رابط الـ Google Apps Script
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzxYKrSXVHcDQVd2vgVKUE4i0zzbTqKbdlTO9sIK-6YYrbaBdpnujGNeWZJm-xcoXnQ/exec";
+
         showRegisterLink.addEventListener('click', (e) => {
             e.preventDefault();
             loginForm.classList.add('hidden');
@@ -242,7 +174,6 @@
             clearRegisterInputs();
         });
 
-        // زر "سجل الدخول" داخل الريجستر
         showLoginLink.addEventListener('click', (e) => {
             e.preventDefault();
             registerForm.classList.add('hidden');
@@ -250,7 +181,6 @@
             clearLoginInputs();
         });
 
-        // زر تسجيل الدخول الرئيسي
         loginBtn.addEventListener('click', () => {
             const email = emailInput.value;
             const password = passwordInput.value;
@@ -258,30 +188,42 @@
                 showMessage('يرجى إدخال البريد الإلكتروني وكلمة المرور.', messageBox, 'error');
                 return;
             }
-            // فتح رابط يوتيوب مباشرة بعد التحقق
+            // مثال: فتح رابط عند تسجيل الدخول
             window.open('https://stopify.co/89S72N', '_blank');
         });
 
-        // زر تسجيل حساب جديد
         registerBtn.addEventListener('click', () => {
+            const firstName = registerFirstNameInput.value;
+            const lastName = registerLastNameInput.value;
             const email = registerEmailInput.value;
             const nationalId = registerNationalIdInput.value;
+            const phone = registerPhoneInput.value;
+            const password = registerPasswordInput.value;
 
             if (!/^\d{14}$/.test(nationalId)) {
                 showMessage('الرقم القومي غير صحيح. يجب أن يتكون من 14 رقمًا.', registerMessageBox, 'error');
                 return;
             }
-
-            if (!registerFirstNameInput.value || !registerLastNameInput.value || !email || !registerPhoneInput.value || !registerPasswordInput.value) {
+            if (!firstName || !lastName || !email || !phone || !password) {
                 showMessage('يرجى ملء جميع الحقول.', registerMessageBox, 'error');
                 return;
             }
 
-            // فتح رابط يوتيوب مباشرة بعد التحقق
-            window.open('https://stopify.co/SL6BB2', '_blank');
+            fetch(WEB_APP_URL, {
+                method: "POST",
+                body: JSON.stringify({ firstName, lastName, email, nationalId, phone, password })
+            })
+            .then(res => res.json())
+            .then(data => {
+                showMessage('تم تسجيل الحساب بنجاح!', registerMessageBox, 'success');
+                clearRegisterInputs();
+            })
+            .catch(err => {
+                console.error(err);
+                showMessage('حدث خطأ أثناء تسجيل البيانات.', registerMessageBox, 'error');
+            });
         });
 
-        // وظائف مساعدة
         function showMessage(text, element, type) {
             element.textContent = text;
             element.classList.add(`message-${type}`);
@@ -290,7 +232,6 @@
                 element.textContent = '';
             }, 3000);
         }
-
         function clearLoginInputs() { emailInput.value = ''; passwordInput.value = ''; messageBox.textContent = ''; }
         function clearRegisterInputs() {
             registerFirstNameInput.value = '';
@@ -304,4 +245,3 @@
     </script>
 </body>
 </html>
-
